@@ -14,4 +14,11 @@ app.post(
   }
 );
 
+app.get(
+  "/applications",
+  (_req: Request, res: Response) => {
+    res.json(applications);
+  }
+);
+
 app.listen(3000);
