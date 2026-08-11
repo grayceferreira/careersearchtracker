@@ -1,12 +1,17 @@
 import express, { Request, Response } from "express";
+import { applications } from "./data/applicationRepository";
 
 const app = express();
 
-app.get("/", (_req: Request, res: Response) => {
-  res.send("Career Tracker API");
-});
+app.use(express.json());
 
-app.listen(3000, () => {
-  console.log("Running on port 3000");
-});
-``
+app.post(
+  "/applications",
+  (req: Request, res: Response) => {
+    applications.push(req.body);
+
+    res.status(201).json(req.body);
+  }
+);
+
+app.listen(3000);
